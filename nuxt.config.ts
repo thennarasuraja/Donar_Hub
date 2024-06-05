@@ -1,15 +1,14 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  devtools: { enabled: false },
-  modules:[
-    "@nuxtjs/tailwindcss",
-    "@nuxt-alt/http",
-    
-  ],
-  serverDir:"nuxt-server",
+  devtools: { enabled: true },
+
+  modules: ["@nuxtjs/tailwindcss", "@nuxt-alt/http"],
 
   http: {
-    // Global default options
-    baseURL: 'http://localhost:5001', // Default base URL
-  }
-})
+    baseURL: "http://localhost:5001",
+    credentials: "omit",
+    browserBaseURL: "http://localhost:5001",
+  },
+  serverDir: "nuxt-server",
+  // serverMiddleware: [{ path: "/api", handler: "~/nuxt-server/index.js" }],
+});
