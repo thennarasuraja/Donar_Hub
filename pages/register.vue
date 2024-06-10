@@ -137,13 +137,24 @@
                 <div class="text-gray-700">Password</div>
                 <div>
                   <input
+                    type="text"
+                    placeholder="Password"
+                    v-model="user.password"
+                    class="border border-gray-300 w-[220px] p-2 focus:outline-none bg-slate-100 rounded-[4px]"
+                  />
+                </div>
+              </div>
+              <!-- <div class="flex flex-col gap-[5px]">
+                <div class="text-gray-700">Password</div>
+                <div>
+                  <input
                     type="password"
                     v-model="user.password"
                     placeholder="Password"
                     class="border border-gray-300 w-[220px] p-2 focus:outline-none bg-slate-100 rounded-[4px]"
                   />
                 </div>
-              </div>
+              </div> -->
             </div>
             <div v-if="role == 'Donar'" class="grid grid-cols-1 mt-5 w-full">
               <div class="text-gray-700">Address</div>

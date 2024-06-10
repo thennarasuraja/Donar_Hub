@@ -7,6 +7,8 @@
           <div class="w-full mb-5">Apply Donations</div>
           <div class="grid grid-cols-3">
             <div
+              v-for="(donation, index) in donations"
+              :key="index"
               class="w-[340px] px-5 py-3 font-medium h-auto text-slate-700 shadow-xl border border-slate-200 rounded-[8px] bg-white"
             >
               <div
@@ -22,21 +24,27 @@
               >
                 <div>
                   <div class="flex flex-col gap gap-2">
-                    <div>Donation Name</div>
-                    <div>Donar Name</div>
+                    <div>
+                      <div>{{ donation.name }}</div>
+                    </div>
+                    <div>{{ donation.DonationName }}</div>
                   </div>
                 </div>
-                <div class="">Created Time</div>
+                <div class="flex flex-col gap gap-2">
+                  <div class="">{{ donation.created_at }}</div>
+                  <div class="">{{ donation.enddate }}</div>
+                </div>
               </div>
               <div class="w-full text-base mt-2 font-medium">
-                <textarea
+                <div
                   class="w-full px-[6px] p-[3px] text-sm font-serif font-medium outline-none h-[80px]"
                 >
-Lorem ipsum, dolor sit amet consectetur adipisicing elit. Iusto incidunt omnis repudiandae suscipit,</textarea
-                >
+                  {{ donation.eligible }}
+                </div>
               </div>
               <div class="flex justify-end m-2">
                 <div
+                  @click="applyDonation(donation)"
                   class="bg-blue-800 rounded-[4px] cursor-pointer text-white py-[5px] text-base px-3"
                 >
                   Apply
@@ -49,3 +57,43 @@ Lorem ipsum, dolor sit amet consectetur adipisicing elit. Iusto incidunt omnis r
     </div>
   </div>
 </template>
+<script>
+export default {
+  data() {
+    return {
+      donations: [],
+    };
+  },
+  mounted() {
+    this.userdonation();
+  },
+  methods: {
+    async userdonation() {
+      const res = await this.$http.$get(
+        "http://localhost:5001/donation/donation"
+      );
+      console.log(res);
+      if (res.success) {
+        this.donations = res.donations;
+      }
+    },
+    async applyDonation(donation) {
+      const res = await this.$http.$post(
+        "http://localhost:5001/application/create",
+        {
+          body: {
+            userId: this.$route.query.userId,
+            donationId: donation.donationId,
+          },
+        }
+      );
+      if (res.success) {
+        alert("applied");
+      } else if (res.success == false) {
+        alert("your Already applied");
+      }
+      console.log("applied", res);
+    },
+  },
+};
+</script>

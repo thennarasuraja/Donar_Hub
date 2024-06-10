@@ -15,7 +15,7 @@
           </div>
           <NuxtLink to="login?type=Donar">
             <div
-              class="px-4 py-2 tracking-wide hover:translate-x-1 hover:scale-110 cursor-pointer text-white transition-colors duration-200 transform bg-blue-500 rounded-md hover:bg-blue-600 focus:outline-none focus:bg-blue-600"
+              class="px-4 py-2 tracking-wide hover:translate-x-1 hover:scale-110 cursor-pointer text-white transition-colors duration-200 transform bg-red-500 rounded-md hover:bg-red-600 focus:outline-none focus:bg-blue-600"
             >
               Donor
             </div>

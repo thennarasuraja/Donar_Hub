@@ -18,7 +18,7 @@
         </NuxtLink>
       </div>
       <div class="flex flex-col px-[5px] gap-2">
-        <NuxtLink to="/donor/">
+        <NuxtLink :to="`/donor/?userId=${userId}`">
           <div
             class="w-full p-2 text-base font-sans font-semibold mt-10 hover:bg-slate-100 rounded-md cursor-pointer"
             :class="{ 'bg-blue-50 text-blue-800': name == 'donation' }"
@@ -26,7 +26,7 @@
             Donation
           </div>
         </NuxtLink>
-        <NuxtLink to="/donor/application">
+        <NuxtLink :to="`/donor/application?userId=${userId}`">
           <div
             class="flex w-full p-2 text-base font-sans font-semibold hover:bg-slate-100 rounded-md cursor-pointer"
             :class="{ 'bg-blue-50 text-blue-800 ': name == 'application' }"
@@ -34,7 +34,7 @@
             Application
           </div>
         </NuxtLink>
-        <NuxtLink to="/donor/profile">
+        <NuxtLink :to="`/donor/profile?userId=${userId}`">
           <div
             class="flex w-full p-2 text-base font-sans font-semibold hover:bg-slate-100 rounded-md cursor-pointer"
             :class="{ 'bg-blue-50  text-blue-800': name == 'profile' }"
@@ -61,7 +61,9 @@ export default {
   //     },
   //   },
   data() {
-    return {};
+    return {
+      userId: this.$route.query.userId,
+    };
   },
 };
 </script>

@@ -5,7 +5,7 @@
       <div class="w-full h-screen bg-slate-100">
         <div class="flex justify-center">
           <div class="text-2xl mt-10 mr-10 absolute">PROFILE</div>
-          <div class="flex flex-col mt-[100px] gap-5">
+          <div class="flex flex-col mt-[100px] gap-2">
             <div class="w-[600px] h-[100px] rounded-[8px] bg-white">
               <div class="flex justify-center py-2">
                 <img
@@ -18,7 +18,7 @@
               <div class="p-5 flex justify-between items-center">
                 <div class="font-semibold">Personal Details</div>
                 <div
-                  @click="editfunc()"
+                  @click="openEditData()"
                   class="flex flex-col gap-3 cursor-pointer"
                 >
                   <img
@@ -33,8 +33,8 @@
                   <div v-if="edit == true">
                     <input
                       type="text"
+                      v-model="user.name"
                       placeholder="Edit your Name"
-                      v-model="student.name"
                       class="border p-2 font-sans rounded-[6px]"
                     />
                   </div>
@@ -44,7 +44,7 @@
                         Name
                       </div>
                       <div class="p-1 text-slate-600">
-                        {{ student.name }}
+                        {{ students.name }}
                       </div>
                     </div>
                   </div>
@@ -52,8 +52,8 @@
                   <div v-if="edit == true">
                     <input
                       type="email"
+                      v-model="user.email"
                       placeholder="Edit your Email"
-                      v-model="student.email"
                       class="border rounded-[6px] p-2"
                     />
                   </div>
@@ -62,14 +62,14 @@
                       <div class="text-sm font-semibold text-slate-900">
                         Email
                       </div>
-                      <div class="p-1 text-slate-600">{{ student.email }}</div>
+                      <div class="p-1 text-slate-600">{{ students.email }}</div>
                     </div>
                   </div>
                   <div v-if="edit == true">
                     <input
                       type="text"
+                      v-model="user.age"
                       placeholder="Edit your Age"
-                      v-model="student.age"
                       class="border rounded-[6px] p-2"
                     />
                   </div>
@@ -78,13 +78,13 @@
                       <div class="text-sm font-semibold text-slate-900">
                         Age
                       </div>
-                      <div class="p-1 text-slate-600">{{ student.age }}</div>
+                      <div class="p-1 text-slate-600">{{ students.age }}</div>
                     </div>
                   </div>
                   <div v-if="edit == true">
                     <textarea
+                      v-model="user.address"
                       placeholder="Edit your Address"
-                      v-model="student.address"
                       class="border rounded-[6px] w-[200px] p-2"
                     >
                     </textarea>
@@ -95,7 +95,7 @@
                         Address
                       </div>
                       <div class="p-1 text-slate-600">
-                        {{ student.address }}
+                        {{ students.address }}
                       </div>
                     </div>
                   </div>
@@ -104,8 +104,8 @@
                   <div v-if="edit == true">
                     <input
                       type="text"
+                      v-model="user.standard"
                       placeholder="Edit your standard"
-                      v-model="student.Standard"
                       class="border rounded-[6px] p-2"
                     />
                   </div>
@@ -115,8 +115,8 @@
                         Standard
                       </div>
                       <div class="p-1 text-slate-600">
-                        {{ student.Standard }}
-                        <span v-if="student.Standard.length >= 1">th </span>
+                        {{ students.standard }}
+                        <span v-if="students.standard >= 4">th </span>
                       </div>
                     </div>
                   </div>
@@ -124,8 +124,8 @@
                   <div v-if="edit == true">
                     <input
                       type="text"
+                      v-model="user.sslcMark"
                       placeholder="Edit your 10th Mark"
-                      v-model="student.sslcMark"
                       class="border rounded-[6px] p-2"
                     />
                   </div>
@@ -135,15 +135,15 @@
                         10th Mark
                       </div>
                       <div class="p-1 text-slate-600">
-                        {{ student.sslcMark }}
+                        {{ students.sslcMark }}
                       </div>
                     </div>
                   </div>
                   <div v-if="edit == true">
                     <input
                       type="text"
+                      v-model="user.hscMark"
                       placeholder="Edit your 12th Mark"
-                      v-model="student.hscMark"
                       class="border rounded-[6px] p-2"
                     />
                   </div>
@@ -153,15 +153,15 @@
                         12th Mark
                       </div>
                       <div class="p-1 text-slate-600">
-                        {{ student.hscMark }}
+                        {{ students.hscMark }}
                       </div>
                     </div>
                   </div>
                   <div v-if="edit == true">
                     <input
                       type="text"
+                      v-model="user.department"
                       placeholder="Edit your 12th Department"
-                      v-model="student.hscDepartment"
                       class="border rounded-[6px] p-2"
                     />
                   </div>
@@ -171,23 +171,24 @@
                         12th Department
                       </div>
                       <div class="p-1 text-slate-600">
-                        {{ student.hscDepartment }}
+                        {{ user.department }}
                       </div>
                     </div>
                   </div>
-                  <div v-if="edit == true">
+                  <div v-if="edit">
                     <div class="w-full flex justify-between">
-                      <input
-                        @click="submited()"
+                      <button
+                        @click="updateUserDetails()"
                         class="bg-blue-800 rounded-[6px] cursor-pointer text-white py-[5px] w-[45%] text-base px-3"
-                        type="submit"
-                      />
-                      <input
-                        @click="cancel()"
+                      >
+                        Submit
+                      </button>
+                      <button
+                        @click="edit = false"
                         class="bg-red-800 rounded-[6px] cursor-pointer text-white w-[45%] py-[5px] text-base px-3"
-                        type="submit"
-                        value="Cancel"
-                      />
+                      >
+                        Cancel
+                      </button>
                     </div>
                   </div>
                 </div>
@@ -200,40 +201,66 @@
   </div>
 </template>
 <script>
-
-
 export default {
   data() {
     return {
       edit: false,
-      student: {
+      userId: this.$route.query.userId,
+      students: {},
+      user: {
+        userId: "",
         name: "",
-        age: "",
         email: "",
+        age: "",
         address: "",
-        Standard: "",
+        standard: "",
         sslcMark: "",
         hscMark: "",
-        hscDepartment: "",
+        department: "",
       },
-      editStudentValue: {},
-      beforeStudentValue: {},
     };
   },
+  mounted() {
+    this.getUserdetails();
+  },
   methods: {
-    editfunc() {
-      this.beforeStudentValue = { ...this.student };
+    async getUserdetails() {
+      const { success, userdata } = await this.$http.$get(
+        `http://localhost:5001/user/userdata?userId=${this.userId}`
+      );
+      console.log("userdata:", userdata);
+      console.log("success:", success);
+
+      this.students = userdata.reduce((accumulator, currentVal) => {
+        return (accumulator = currentVal);
+      }, {});
+      this.copy = this.students;
+
+      console.log("usserdata:==", this.students);
+    },
+    async updateUserDetails() {
+      const updated = await this.$http.$put(
+        "http://localhost:5001/user/userupdate",
+        {
+          body: this.user,
+        }
+      );
+      this.edit = false;
+      console.log("updatevalue:", updated);
+      this.getUserdetails()
+    },
+    openEditData() {
+      console.log("fdgdgdfhd");
+      this.user.userId = this.students.userId;
+      this.user.name = this.students.name;
+      this.user.email = this.students.email;
+      this.user.age = this.students.age;
+      this.user.address = this.students.address;
+      this.user.standard = this.students.standard;
+      this.user.sslcMark = this.students.sslcMark;
+      this.user.hscMark = this.students.hscMark;
+      this.user.department = this.students.department;
       this.edit = true;
-    },
-    submited() {
-      this.editstudent = { ...this.student };
-      this.student = { ...this.editstudent };
-      console.log(this.student);
-      this.edit = false;
-    },
-    cancel() {
-      this.student = { ...this.beforeStudentValue };
-      this.edit = false;
     },
   },
 };
