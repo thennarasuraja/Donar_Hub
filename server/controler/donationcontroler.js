@@ -59,9 +59,17 @@ export class DonationControler {
     })
   }
   static getdonationId(req, res) {
+    const donorusserId=req.query.userId
     console.log("fdgfdg");
-    connection.query('SELECT donation.*,user.name from donation INNER JOIN user on donation.userId=user.userId;',(err,result)=>{
+    let whereQuery=`WHERE 1=1`
+
+    if(donorusserId){
+      whereQuery+=` And donation.userId=${donorusserId}`
+    }
+  
+    connection.query(`SELECT donation.*,user.name from donation INNER JOIN user on donation.userId=user.userId ${whereQuery} ;`,(err,result)=>{
         if(err){
+          console.log(err)
             return res.send("something error")
         }
         return res.json({

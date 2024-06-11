@@ -328,6 +328,7 @@ export default {
         vision: " ",
         mission: " ",
         department: " ",
+        role: this.$route.query.type,
       },
     };
   },

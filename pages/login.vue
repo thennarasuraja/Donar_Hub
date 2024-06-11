@@ -54,6 +54,7 @@ export default {
       user: {
         email: " ",
         password: "",
+        role:this.$route.query.type
       },
       userData: [],
     };

@@ -25,14 +25,18 @@
                 <div>
                   <div class="flex flex-col gap gap-2">
                     <div>
-                      <div>{{ donation.name }}</div>
+                      <div class="text-[16px] font-extrabold text-blue-500">
+                        {{ donation.DonationName }}
+                      </div>
                     </div>
-                    <div>{{ donation.DonationName }}</div>
+                    <div>{{ donation.name }}</div>
                   </div>
                 </div>
-                <div class="flex flex-col gap gap-2">
-                  <div class="">{{ donation.created_at }}</div>
-                  <div class="">{{ donation.enddate }}</div>
+                <div class="flex justify-end gap gap-2">
+                  <div class="flex flex-col text-right">
+                    <div class="">{{ donation.created_at }}</div>
+                    <div class="">{{ donation.enddate }}</div>
+                  </div>
                 </div>
               </div>
               <div class="w-full text-base mt-2 font-medium">

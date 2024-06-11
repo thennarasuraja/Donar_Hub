@@ -13,7 +13,7 @@
             <img class="w-[40px] h-[25px]" src="/images/students-icon.webp" />
             <div>DonorHub</div>
           </div>
-          <NuxtLink to="login?type=Donar">
+          <NuxtLink to="login?type=Donor">
             <div
               class="px-4 py-2 tracking-wide hover:translate-x-1 hover:scale-110 cursor-pointer text-white transition-colors duration-200 transform bg-red-500 rounded-md hover:bg-red-600 focus:outline-none focus:bg-blue-600"
             >

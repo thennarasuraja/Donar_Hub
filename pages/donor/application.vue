@@ -7,7 +7,7 @@
         <div v-for="apply in donor" class="w-full p-3">
           <div class="h-[100px] border bg-white grid grid-cols-3">
             <div class="flex flex-col gap-3 px-3 py-3">
-              <div>{{ apply.donorName }}</div>
+              <div>{{ apply.name }}</div>
               <div>
                 {{ apply.DonationName }}
                 <span class="pl-[40px]">({{ apply.created_at }})</span>

@@ -29,7 +29,7 @@ export class UserControler {
   static loginuser(req, res) {
     const login = req.body;
     console.log(login, "dfgdgsdgg");
-    connection.query(`select * from user where email='${login.email}' and password='${login.password}'`,(err,result)=>{
+    connection.query(`select * from user where email='${login.email}' and password='${login.password}' and role='${login.role}'`,(err,result)=>{
         if (err) {
             console.log(err)
               return res.json({

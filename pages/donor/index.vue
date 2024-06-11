@@ -116,9 +116,44 @@
               </div>
             </div>
           </div>
-          <div class="p-5 flex">
-            <div class="p-2 w-full border ">fgdfxfgvxv
-
+          <div class="p-5 grid grid-cols-3">
+            <div
+              v-for="donation in donations"
+              class="w-[340px] px-5 py-3 font-medium h-auto text-slate-700 shadow-xl border border-slate-200 rounded-[8px] bg-white"
+            >
+              <div
+                class="w-full text-base text-center flex items-center justify-center h-[85px]"
+              >
+                <img
+                  class="w-[50px] h-[50px]"
+                  src="/public/images/profile.png"
+                />
+              </div>
+              <div>
+                <div
+                  class="flex justify-between text-sm font-semibold text-slate-900 w-full"
+                >
+                  <div>
+                    <div class="flex flex-col gap gap-2">
+                      <div>
+                        <div>{{ donation.DonationName }}</div>
+                      </div>
+                      <div>{{ donation.name }}</div>
+                    </div>
+                  </div>
+                  <div class="flex flex-col gap gap-2">
+                    <div>{{ donation.enddate }}</div>
+                    <div>{{ donation.created_at }}</div>
+                  </div>
+                </div>
+                <div class="w-full text-base mt-2 font-medium">
+                  <div
+                    class="w-full px-[6px] p-[3px] text-sm font-serif font-medium outline-none h-[80px]"
+                  >
+                    {{ donation.eligible }}
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -139,7 +174,11 @@ export default {
         others: "",
         eligible: "",
       },
+      donations: {},
     };
+  },
+  mounted() {
+    this.getdonations();
   },
   methods: {
     async creatDonation() {
@@ -149,8 +188,17 @@ export default {
           body: this.donor,
         }
       );
-      console.log(creatdonate);
+      console.log("donate:", creatdonate);
+      this.donations = creatdonate.data;
       this.createModel = false;
+    },
+    async getdonations() {
+      const donationdata = await this.$http.$get(
+        `http://localhost:5001/donation/donation?userId=${this.userId}`
+      );
+      console.log("donationdata:", donationdata);
+      this.donations = donationdata.donations;
+      console.log("gffgfhcrdhd", this.donations);
     },
   },
 };

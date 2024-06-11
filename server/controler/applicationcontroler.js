@@ -8,7 +8,7 @@ export class ApplicationControler {
             console.log(err)
             return res.json({
             success:false,
-    err
+            err
         })
         }
         return res.json({
